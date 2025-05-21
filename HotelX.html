@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HotelX - Welcome</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #0a0a1f;
+        color: white;
+        opacity: 0;
+        animation: fadeInBody 1.2s ease forwards;
+      }
+
+      @keyframes fadeInBody {
+        to {
+          opacity: 1;
+        }
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        z-index: 1000;
+        transform: translateY(-60px);
+        opacity: 0;
+        animation: slideDownHeader 1s 0.3s cubic-bezier(0.77, 0, 0.18, 1)
+          forwards;
+      }
+
+      @keyframes slideDownHeader {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .hero {
+        background: linear-gradient(
+            to bottom right,
+            rgba(0, 0, 50, 0.8),
+            rgba(50, 0, 100, 0.8)
+          ),
+          url("https://i.pinimg.com/736x/1c/27/35/1c273531ff0ecb24ef82032b64309404.jpg")
+            no-repeat center center/cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        padding-top: 100px;
+        opacity: 0;
+        transform: scale(0.98);
+        animation: fadeInHero 1.2s 0.6s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      @keyframes fadeInHero {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .hero h1,
+      .hero p,
+      .cta-button {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUp 0.8s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      .hero h1 {
+        animation-delay: 1s;
+      }
+
+      .hero p {
+        animation-delay: 1.15s;
+      }
+
+      .cta-button {
+        animation-delay: 1.3s;
+        background-color: #6c5ce7;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+
+      nav a {
+        color: white;
+        margin-left: 30px;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #a29bfe;
+      }
+
+      .book-button {
+        background-color: #6c5ce7;
+        padding: 10px 20px;
+        border-radius: 25px;
+      }
+
+      section {
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      #about {
+        background-color: #111324;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeSection 1s 1.6s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      #gallery {
+        background-color: #0d0f1f;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeSection 1s 1.8s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      #book {
+        background: #15172a;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeSection 1s 2s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      @keyframes fadeSection {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #about h2,
+      #gallery h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      #about p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        color: #ccc;
+      }
+
+      .rooms-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      .room-card {
+        background-color: #1a1c30;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUpCard 0.8s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      .room-card:nth-child(1) {
+        animation-delay: 1.7s;
+      }
+
+      .room-card:nth-child(2) {
+        animation-delay: 1.8s;
+      }
+
+      .room-card:nth-child(3) {
+        animation-delay: 1.9s;
+      }
+
+      @keyframes fadeUpCard {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .room-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .room-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .room-card h3 {
+        font-size: 20px;
+        margin: 15px;
+        color: #a29bfe;
+      }
+
+      .room-card p {
+        font-size: 15px;
+        color: #ccc;
+        margin: 0 15px 20px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 40px auto 0;
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+        opacity: 0;
+        transform: scale(0.97);
+        animation: fadeInGallery 0.7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+      }
+
+      .gallery-grid img:nth-child(1) {
+        animation-delay: 2.1s;
+      }
+
+      .gallery-grid img:nth-child(2) {
+        animation-delay: 2.2s;
+      }
+
+      .gallery-grid img:nth-child(3) {
+        animation-delay: 2.3s;
+      }
+
+      .gallery-grid img:nth-child(4) {
+        animation-delay: 2.4s;
+      }
+
+      .gallery-grid img:nth-child(5) {
+        animation-delay: 2.5s;
+      }
+
+      .gallery-grid img:nth-child(6) {
+        animation-delay: 2.6s;
+      }
+
+      @keyframes fadeInGallery {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .gallery-grid img:hover {
+        transform: scale(1.03);
+      }
+
+      #book p {
+        color: #ccc;
+        max-width: 600px;
+        margin: 20px auto 0;
+      }
+
+      /* Responsive Design for Book Button and Layout */
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 15px 20px;
+        }
+
+        nav {
+          margin-top: 10px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .book-button {
+          font-size: 14px;
+          padding: 8px 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .book-button {
+          font-size: 13px;
+          padding: 6px 12px;
+          border-radius: 20px;
+        }
+
+        .cta-button {
+          font-size: 14px;
+          padding: 8px 14px;
+        }
+
+        .hero h1 {
+          font-size: 28px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">HotelX</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#book" class="book-button">Book Now</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <h1>Welcome to HotelX</h1>
+      <p>
+        Experience luxury, comfort, and futuristic design at the heart of your
+        destination.
+      </p>
+      <a href="#book" class="cta-button">Book Your Stay</a>
+    </section>
+
+    <section id="about">
+      <h2>About HotelX</h2>
+      <p>
+        Founded in 2025, HotelX was built on the vision of blending luxury with
+        cutting-edge technology. Located in the heart of the city, we offer
+        guests a unique stay powered by AI comfort systems, sustainable
+        architecture, and immersive ambiance.
+      </p>
+      <p>
+        Whether you're here for business or leisure, HotelX provides the perfect
+        fusion of modern design and relaxing hospitality.
+      </p>
+
+      <div class="rooms-container">
+        <div class="room-card">
+          <img
+            src="https://i.pinimg.com/736x/5f/5d/41/5f5d41d4754230ca4dad2ce7488f9101.jpg"
+            alt="Standard Room"
+          />
+          <h3>Standard Room</h3>
+          <p>
+            Perfect for solo travelers or couples. Comes with a smart bed,
+            ambient lighting, and high-speed WiFi.
+          </p>
+        </div>
+
+        <div class="room-card">
+          <img
+            src="https://i.pinimg.com/736x/dc/2d/4a/dc2d4a4ae847316217b1c8d1a9fc6ecc.jpg"
+            alt="Deluxe Room"
+          />
+          <h3>Deluxe Room</h3>
+          <p>
+            Spacious comfort with a city view. Includes a smart entertainment
+            system and luxury bathroom features.
+          </p>
+        </div>
+
+        <div class="room-card">
+          <img
+            src="https://i.pinimg.com/736x/1a/4b/72/1a4b727c57e0434039882eca1a07e5fe.jpg"
+            alt="Executive Suite"
+          />
+          <h3>Executive Suite</h3>
+          <p>
+            Top-tier experience with a living area, voice-controlled room
+            service, and panoramic skyline views.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img
+          src="https://i.pinimg.com/736x/a2/79/65/a27965d975bdd496c9cfed526b0c73b5.jpg"
+          alt="Lobby"
+        />
+        <img
+          src="https://i.pinimg.com/736x/dc/2d/4a/dc2d4a4ae847316217b1c8d1a9fc6ecc.jpg"
+          alt="Room"
+        />
+        <img
+          src="https://i.pinimg.com/736x/73/32/82/733282bd56c38115dad4cb74e1401d90.jpg"
+          alt="Restaurant"
+        />
+        <img
+          src="https://i.pinimg.com/736x/13/8a/a8/138aa85c6c3afe8051a751a346468dcb.jpg"
+          alt="Spa"
+        />
+        <img
+          src="https://i.pinimg.com/736x/51/76/ba/5176ba56fb23faf70b1a53cb5aecfa83.jpg"
+          alt="Pool"
+        />
+        <img
+          src="https://i.pinimg.com/736x/83/ee/1b/83ee1b4a5004950f0ae4374ae188076b.jpg"
+          alt="Skyview"
+        />
+      </div>
+    </section>
+
+    <section id="book">
+      <h2>Book Your Stay</h2>
+      <p>
+        Booking system coming soon. For now, contact us via phone or email to
+        reserve your room.
+      </p>
+    </section>
+  </body>
+</html>
